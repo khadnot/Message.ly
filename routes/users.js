@@ -1,5 +1,5 @@
 const express = require("express");
-const router = new express.Router();const router = new express.Router();
+const router = new express.Router();
 const User = require("../models/user");
 const { ensureLoggedIn, ensureCorrectUser } = require("../middleware/auth");
 
@@ -13,7 +13,7 @@ router.get('/', ensureLoggedIn, async (req, res, next) => {
     try {
         let users = await User.all();
         return res.json({ users });
-    } catch (e) {
+    } catch(e) {
         return next(e);
     }
 });
@@ -71,3 +71,5 @@ router.get('/:username/from', ensureCorrectUser, async (req, res, next) => {
         return next(e);
     }
 });
+
+module.exports = router;
